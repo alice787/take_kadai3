@@ -19,19 +19,26 @@ class ViewController: UIViewController {
     @IBOutlet private weak var rightSwitch: UISwitch!
 
     @IBAction private func resultButtonTapped(_ sender: Any) {
-        var leftNum = Int(leftTextField.text ?? "") ?? 0
-        var rightNum = Int(rightTextField.text ?? "") ?? 0
+        let leftNum = Int(leftTextField.text ?? "") ?? 0
+        let rightNum = Int(rightTextField.text ?? "") ?? 0
 
+        let signedLeftNum: Int
         if leftSwitch.isOn {
-            leftNum *= -1
+            signedLeftNum = -leftNum
+        } else {
+            signedLeftNum = leftNum
         }
+
+        let signedRightNum: Int
         if rightSwitch.isOn {
-            rightNum *= -1
+            signedRightNum = -rightNum
+        } else {
+            signedRightNum = rightNum
         }
 
-        leftTextLabel.text = String(leftNum)
-        rightTextLabel.text = String(rightNum)
+        leftTextLabel.text = String(signedLeftNum)
+        rightTextLabel.text = String(signedRightNum)
 
-        resultLabel.text = String(leftNum + rightNum)
+        resultLabel.text = String(signedLeftNum + signedRightNum)
     }
 }
